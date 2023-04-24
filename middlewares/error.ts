@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-const logger = require('../utils/logger')
+const logger = require('../utils/Logger')
 
 
 

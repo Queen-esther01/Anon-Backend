@@ -1,4 +1,4 @@
-let logging = require('../utils/logger')
+let logging = require('../utils/Logger')
 require('express-async-errors')
 
 

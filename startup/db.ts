@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose'
-const log = require('../utils/logger')
+const log = require('../utils/Logger')
 const mongoose = require('mongoose')
 
 
