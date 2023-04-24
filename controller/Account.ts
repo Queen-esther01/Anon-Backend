@@ -10,6 +10,7 @@ const bcrypt = require('bcrypt')
 const User = require('../model/Account')
 
 const env = process.env.NODE_ENV || "development"
+
 export const novu = new Novu(env === 'development' ? process.env.DEV_NOVU_API_KEY! : process.env.PROD_NOVU_API_KEY!)
 
 

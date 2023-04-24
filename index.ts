@@ -21,7 +21,7 @@ Sentry.init({
     // of transactions for performance monitoring.
     // We recommend adjusting this value in production
     tracesSampleRate: 1.0,
-    enabled: env === 'development' ? true : false
+    enabled: env === 'development' ? false : true
 });
 
 // RequestHandler creates a separate execution context, so that all
@@ -32,7 +32,7 @@ app.use(Sentry.Handlers.tracingHandler());
 
 
 // require('./startup/sentry')()
-// require('./startup/logging.ts')
+require('./startup/logging.ts')
 require('./startup/db')()
 require('./startup/routes')(app)
 require('./startup/config')()
@@ -45,4 +45,4 @@ app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 })
 
-module.exports
+module.exports = app

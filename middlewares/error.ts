@@ -4,7 +4,7 @@ const logger = require('../utils/logger')
 
 
 function error(err: any, req:Request, res:Response, next: any){
-    console.log(err)
+    //console.log(err)
     logger.log({level: 'error', message: err.message})
     
     res.status(500).send({
