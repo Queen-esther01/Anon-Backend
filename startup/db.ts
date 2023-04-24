@@ -3,7 +3,6 @@ const log = require('../utils/Logger')
 const mongoose = require('mongoose')
 
 
-//yZrrbpFCY7aQzNEt
 module.exports = function db(){
     const env = process.env.NODE_ENV || "development"
     mongoose.connect(env === 'development' ? process.env.DEV_MONGO_URL : process.env.PROD_MONGO_URL)
