@@ -8,6 +8,9 @@
     "dev": "nodemon ./index.ts",
     "start": "ts-node ./index.ts"
   },
+  "engines": {
+    "node": "16.16.0"
+  },
   "author": "Esther",
   "license": "ISC",
   "dependencies": {
