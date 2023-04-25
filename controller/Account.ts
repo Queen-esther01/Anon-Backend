@@ -41,7 +41,7 @@ const createUser = async(data: AccountInterface, res: any) => {
 
     //CREATE NOVU SUBSCRIBER
     await novu.subscribers.identify(response._id, {
-        
+        firstname: user.username
     });
 
     //REGISTER SUBSCRIBER DEVICE TOKEN
