@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express'
 import { AccountInterface } from '../interface/Interface'
 const ObjectIdError = require('../utils/ObjectIdError')
-const { createUser, loginUser, getAllUsers, getUsersByVisibility, getUserByCode, getCurrentUser } = require('../controller/Account')
+const { createUser, loginUser, getAllUsers, getUsersByVisibility, getUserByUsername, getUserByCode, getCurrentUser } = require('../controller/Account')
 const auth = require('../middlewares/auth')
 const router = express.Router()
 const Joi = require('joi')
@@ -45,6 +45,15 @@ router.get('/get-user-by-code/:id', async(req:Request, res:Response) => {
     return res.status(result.status).send(result);
 })
 
+router.get('/get-user-by-username/:username', async(req:Request, res:Response) => {
+    const { error } = validateUsername(req.params.username)
+    if(error){
+        return ObjectIdError(res, error )
+    }
+    let result = await getUserByUsername(req.params.username, res)
+    return res.status(result.status).send(result);
+})
+
 router.get('/get-current-user',[auth], async(req:Request, res:Response) => {
     let result = await getCurrentUser(req)
     return res.status(result.status).send(result);
@@ -64,6 +73,12 @@ const validateUser = (user: AccountInterface) => {
 
 const validateCode = (code: string) => {
     const schema = Joi.string().min(8).max(8).required()
+    let result = schema.validate(code);
+    return result
+}
+
+const validateUsername = (code: string) => {
+    const schema = Joi.string().required()
     let result = schema.validate(code);
     return result
 }

@@ -55,7 +55,7 @@ const createUser = async(data: AccountInterface, res: any) => {
     
     await user.save()
 
-    return result("Successful", 201, "Account created successfully", { accessToken: authToken, id: user.uniqueId })
+    return result("Successful", 201, "Account created successfully", { accessToken: authToken, id: user.uniqueId, username: user.username })
 }
 
 
@@ -113,6 +113,14 @@ const getUserByCode = async(id:string, res: any) => {
     return result("Successful", 200, 'User fetched successfully', user)
 }
 
+const getUserByUsername = async(username:string, res: any) => {
+    //Check if user  exists
+    let user = await User.findOne({username: username}).select({deviceToken:0, password:0, createdAt:0})
+    if(!user) return result("Unsuccessful", 400, "User does not exist", null)
+
+    return result("Successful", 200, 'User fetched successfully', user)
+}
+
 const getCurrentUser = async(req: any) => {
     //Check if user  exists
     // console.log(req.user)
@@ -132,5 +140,6 @@ module.exports = {
     getAllUsers,
     getUsersByVisibility,
     getUserByCode,
+    getUserByUsername,
     getCurrentUser,
 }
