@@ -42,7 +42,7 @@ router.get('/get-user-by-code/:id', async(req:Request, res:Response) => {
         return ObjectIdError(res, error )
     }
     let result = await getUserByCode(req.params.id, res)
-    return res.status(result.status).send(result);
+    return res.status(result.status).send(result)
 })
 
 router.get('/get-user-by-username/:username', async(req:Request, res:Response) => {
